@@ -25,6 +25,11 @@ const routes = [
     name: 'Msite',
     component: () => import(/* webpackChunkName: "Msite" */ '../views/msite/msite.vue'),
   },
+  {  // 罗根
+    path: '/test',
+    name: 'Test',
+    component: () => import(/* webpackChunkName: "Msite" */ '../views/msite/test.vue'),
+  },
   {
     path: '/about',
     name: 'about',

@@ -9,25 +9,37 @@
       </nav>
       <router-link tag='span' to='/' class="city_name">{{msiteTitle}}</router-link>
     </header>
-    <button @click='aa'>123132412412</button>
-    <aa :list=list></aa>
+    <div>
+      <div v-for=' (item,i) in list' :key='i' style='border-bottom:1px solid #e3e3e3'>
+          <p>{{item.name}}</p>
+          <p>{{item.site}}</p>
+          <p>
+            <van-button size='small' @click='sellView(item)' plain type="default">销售订单</van-button>
+            <van-button size='small' plain type="primary">车销单</van-button>
+            <van-button size='small' plain type="info">退货单</van-button>
+          </p>
+      </div>
+    </div>
   </div>
 </template>
 <script lang='ts'>
 import {cityGuess, msiteAddress} from '@/api/getData'
 import { Component, Vue } from 'vue-property-decorator';
 import {State, Mutation} from 'vuex-class'
-import aa from './aa.vue'
 @Component({
   components: {
-    aa,
   },
 })
 export default class Msite extends Vue {
   @Mutation('SAVE_GEOHASH') public saveGeohash;
+  @Mutation('SAVE_ORDER') public handelOrder; //罗根
   public msiteTitle = '请选择地址...';
   public geohash: any = '';  // 地理位置
-  public  list = [1, 2]
+  public list =[
+    {id:1,name:'丽英超市',site:'南京路一号'},
+    {id:2,name:'龙铺超市',site:'青岛路一号'},
+    {id:3,name:'焕欢超市',site:'上海路一号'},
+    ]
 
   public beforeMount() {
     if (this.$route.query.geohash) {
@@ -47,9 +59,10 @@ export default class Msite extends Vue {
       console.log(res)
     })
   }
-
-  public aa() {
-    this.list.push(3)
+  // 罗根
+  public sellView(item) {
+      this.handelOrder(item)
+      this.$router.push({name:'Test',query:{id:item.id}})
   }
 }
 </script>

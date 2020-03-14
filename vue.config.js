@@ -5,7 +5,7 @@ module.exports = {
  /*  devServer: {
      proxy: {
       '/apis': {
-        target: 'http://elm.cangdu.org/v1', // target host
+        target: 'http://182.50.1.45:7529/api', // target host
         ws: true, // proxy websockets
         changeOrigin: true, // needed for virtual hosted sites
         pathRewrite: {

@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const state = {
   geohash: '39.90783,116.55921', // 地址geohash
+  orderList:[]  //罗根
 }
 
 export default new Vuex.Store({
